@@ -1,0 +1,15 @@
+version: '3'
+services:
+  test_ports:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test_ports:latest
+    ports:
+      - "80:80"
+      - "443:443"
+      - "53:53/udp"
+    command:
+      - nginx
+      - -g
+      - daemon off; 

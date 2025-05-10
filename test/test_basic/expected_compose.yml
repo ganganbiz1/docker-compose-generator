@@ -1,0 +1,17 @@
+version: '3'
+services:
+  test_basic:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test_basic:latest
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_APP: app.py
+      FLASK_ENV: development
+    working_dir: /app
+    command:
+      - flask
+      - run
+      - --host=0.0.0.0 

@@ -1,0 +1,19 @@
+version: '3'
+services:
+  test_dockerfile:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test_dockerfile:latest
+    ports:
+      - "8000:8000"
+    environment:
+      DEBUG: "False"
+      PORT: "8000"
+    volumes:
+      - /app/data:/app/data
+      - /app/logs:/app/logs
+    working_dir: /app
+    command:
+      - python
+      - app.py 

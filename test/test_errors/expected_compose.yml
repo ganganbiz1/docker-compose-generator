@@ -1,0 +1,8 @@
+version: '3'
+services:
+  test_errors:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test_errors:latest
+    working_dir: /app 
