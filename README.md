@@ -18,8 +18,8 @@ A command-line tool that automatically generates Docker Compose files from Docke
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/docker-tool.git
-cd docker-tool
+git clone https://github.com/ganganbiz1/docker-compose-generator.git
+cd docker-compose-generator
 ```
 
 2. Create a virtual environment (recommended):
