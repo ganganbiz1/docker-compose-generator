@@ -1,0 +1,14 @@
+version: '3'
+services:
+  test_multi_stage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test_multi_stage:latest
+    ports:
+      - "80:80"
+    working_dir: /app
+    command:
+      - nginx
+      - -g
+      - daemon off; 

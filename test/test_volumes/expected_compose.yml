@@ -1,0 +1,18 @@
+version: '3'
+services:
+  test_volumes:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test_volumes:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+      - /var/log/postgresql:/var/log/postgresql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    command:
+      - postgres 

@@ -1,0 +1,38 @@
+version: '3'
+services:
+  test_complex:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test_complex:latest
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+      - "9090:9090/udp"
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: info
+      SERVER_PORT: "8080"
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: appdb
+      DB_USER: dbuser
+      ENABLE_METRICS: "true"
+    volumes:
+      - /var/lib/app/data:/var/lib/app/data
+      - /var/log/app:/var/log/app
+      - /etc/app/custom-config:/etc/app/custom-config
+    user: appuser
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health", "||", "exit", "1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    entrypoint:
+      - /usr/local/bin/server
+    command:
+      - --config
+      - /etc/app/config.yaml
+      - --verbose
+    working_dir: /app 

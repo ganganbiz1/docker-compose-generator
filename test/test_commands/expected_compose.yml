@@ -1,0 +1,15 @@
+version: '3'
+services:
+  test_commands:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test_commands:latest
+    ports:
+      - "8000:8000"
+    working_dir: /app
+    entrypoint:
+      - python
+    command:
+      - app.py
+      - --debug 

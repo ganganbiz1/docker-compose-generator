@@ -1,0 +1,18 @@
+version: '3'
+services:
+  test_env_vars:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test_env_vars:latest
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      API_URL: https://api.example.com
+      DEBUG: "false"
+      LOG_LEVEL: info
+    command:
+      - node
+      - app.js 
