@@ -279,12 +279,13 @@ class DockerfileParser:
 
 def main() -> None:
     """メイン関数"""
-    if len(sys.argv) != 3:
-        print("Usage: python main.py <dockerfile_path> <output_path>")
+    if len(sys.argv) < 2:
+        print("Usage: python main.py <dockerfile_path> [output_path]")
         sys.exit(1)
 
     dockerfile_path = sys.argv[1]
-    output_path = sys.argv[2]
+    # 出力先が指定されていない場合は、Dockerfileと同じディレクトリに出力
+    output_path = sys.argv[2] if len(sys.argv) > 2 else str(Path(dockerfile_path).parent / 'docker-compose.yml')
 
     try:
         parser = DockerfileParser(dockerfile_path)
